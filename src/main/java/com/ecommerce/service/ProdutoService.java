@@ -52,6 +52,11 @@ public class ProdutoService {
 
     //Deleta o produto pelo id
     public void deletarProduto(Long id){
+        Produto produto = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "O produto com o id: " + id + " não existe."
+                ));
+
         repository.deleteById(id);
     }
 
