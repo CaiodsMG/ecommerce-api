@@ -6,6 +6,8 @@ import com.ecommerce.repository.ProdutoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +27,13 @@ public class ProdutoService {
 
     //Listar todos os produtos
     public List<ProdutoDTO> listarProdutos(){
-        return repository.findAll().stream().map(this::toDTO).toList();
+        return repository.findAll().stream().map(produto -> toDTO(produto)).toList();
+    }
+
+    public Page<ProdutoDTO> listarProdutosPorPaginas(Pageable pageable){
+        Page<Produto> produtos = repository.findAll(pageable);
+
+        return produtos.map(produto -> toDTO(produto));
     }
 
     //Procura o produto pelo id informado, se o id não existir retornará uma mensagem.
