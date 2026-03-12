@@ -17,9 +17,9 @@ public class ProdutoService {
     private ProdutoRepository repository;
 
     //Criação de um produto
-    public ProdutoDTO criarProduto(Produto produto){
+    public ProdutoDTO criarProduto(ProdutoDTO dto){
+        Produto produto = toEntity(dto);
         Produto produtoCriado = repository.save(produto);
-
         return toDTO(produtoCriado);
     }
 
@@ -70,5 +70,17 @@ public class ProdutoService {
         dto.setEstoque(produto.getEstoque());
 
         return dto;
+    }
+
+    private Produto toEntity(ProdutoDTO dto) {
+
+        Produto produto = new Produto();
+
+        produto.setId(dto.getId());
+        produto.setNome(dto.getNome());
+        produto.setPreco(dto.getPreco());
+        produto.setEstoque(dto.getEstoque());
+
+        return produto;
     }
 }

@@ -30,7 +30,7 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProdutoDTO criarProduto(@Valid @RequestBody Produto produto){
+    public ProdutoDTO criarProduto(@Valid @RequestBody ProdutoDTO produto){
         return service.criarProduto(produto);
     }
 
