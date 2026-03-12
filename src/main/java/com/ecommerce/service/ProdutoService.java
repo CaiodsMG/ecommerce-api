@@ -16,24 +16,24 @@ public class ProdutoService {
     private ProdutoRepository repository;
 
     //Criação de um produto
-    public Produto criar(Produto produto){
+    public Produto criarProduto(Produto produto){
         return repository.save(produto);
     }
 
     //Listar todos os produtos
-    public List<Produto> listar(){
+    public List<Produto> listarProdutos(){
         return repository.findAll();
     }
 
     //Procura o produto pelo id informado, se o id não existir retornará uma mensagem.
-    public Produto procurarPorId(Long id){
+    public Produto procurarProdutoPorId(Long id){
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("O produto com o id: " + id + " não existe."));
     }
 
     //Procura o produto pelo id informado e pede um corpo para a atualização.
-    public Produto atualizar(Long id, Produto produto){
-        Produto produtoAtualizado = procurarPorId(id);
+    public Produto atualizarProduto(Long id, Produto produto){
+        Produto produtoAtualizado = procurarProdutoPorId(id);
 
         BeanUtils.copyProperties(produto, produtoAtualizado, "id");
 
@@ -41,7 +41,7 @@ public class ProdutoService {
     }
 
     //Deleta o produto pelo id
-    public void deletar(Long id){
+    public void deletarProduto(Long id){
         repository.deleteById(id);
     }
 }
