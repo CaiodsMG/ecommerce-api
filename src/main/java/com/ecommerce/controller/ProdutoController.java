@@ -1,5 +1,6 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.dto.ProdutoDTO;
 import com.ecommerce.entity.Produto;
 import com.ecommerce.service.ProdutoService;
 import jakarta.validation.Valid;
@@ -17,25 +18,25 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping
-    public List<Produto> listarProdutos(){
+    public List<ProdutoDTO> listarProdutos(){
         return service.listarProdutos();
     }
 
     @GetMapping("/{produtoId}")
     @ResponseStatus(HttpStatus.OK)
-    public Produto procurarPorId(@PathVariable Long produtoId){
+    public ProdutoDTO procurarPorId(@PathVariable Long produtoId){
         return service.procurarProdutoPorId(produtoId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Produto criarProduto(@Valid @RequestBody Produto produto){
+    public ProdutoDTO criarProduto(@Valid @RequestBody Produto produto){
         return service.criarProduto(produto);
     }
 
     @PutMapping("/{produtoId}")
     @ResponseStatus(HttpStatus.OK)
-    public Produto atualizarProduto(@PathVariable Long produtoId,
+    public ProdutoDTO atualizarProduto(@PathVariable Long produtoId,
                                     @Valid @RequestBody Produto produto){
         return service.atualizarProduto(produtoId, produto);
     }

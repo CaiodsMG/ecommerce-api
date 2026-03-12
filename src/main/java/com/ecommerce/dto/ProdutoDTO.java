@@ -1,25 +1,15 @@
-package com.ecommerce.entity;
+package com.ecommerce.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "tb_produtos")
-public class Produto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProdutoDTO {
+
     private Long id;
-
-    @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false)
     private BigDecimal preco;
-
-    @Column(nullable = false)
     private Integer estoque;
 
     public Long getId() {
@@ -54,10 +44,10 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    public Produto() {
+    public ProdutoDTO() {
     }
 
-    public Produto(Long id, String nome, BigDecimal preco, Integer estoque) {
+    public ProdutoDTO(Long id, String nome, BigDecimal preco, Integer estoque) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
